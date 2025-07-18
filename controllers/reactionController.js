@@ -26,3 +26,21 @@ export const storyLikes = async (req, res, next) => {
     next(err);
   }
 };
+
+export const likedStatus = async (req, res, next) => {
+  try {
+    const uid = req.user?.id || null;
+    const gid = req.headers["x-guest-id"] || null;
+    if (!uid && !gid)
+      return res.status(400).json({ message: "Missing identifier" });
+
+    const liked = await Reaction.hasLiked({
+      story_id: req.params.id,
+      user_id: uid,
+      guest_id: gid,
+    });
+    res.json({ liked });
+  } catch (err) {
+    next(err);
+  }
+};

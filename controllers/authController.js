@@ -3,7 +3,7 @@ import { signToken } from "../utils/jwt.js";
 
 export const register = async (req, res, next) => {
   try {
-    const user = await User.create(req.body); // { email, password }
+    const user = await User.create(req.body);
     res
       .status(201)
       .json({ token: signToken({ id: user.id, email: user.email }) });

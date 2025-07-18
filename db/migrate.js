@@ -12,9 +12,9 @@ const sql = fs.readFileSync(
 );
 db.exec(sql, (err) => {
   if (err) {
-    console.error("❌  Migration failed:", err.message);
+    console.error("❌  빼애애액 마이그레이션 오류: ", err.message);
     process.exit(1);
   }
-  console.log("✅  Migration completed");
+  console.log("✅  마이그레이션이 완료되었습니다");
   process.exit(0);
 });

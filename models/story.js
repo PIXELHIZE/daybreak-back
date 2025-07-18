@@ -1,4 +1,3 @@
-// models/story.js
 import db from "../db/sqlite.js";
 
 export const create = ({ user_id, content }) =>
@@ -11,6 +10,8 @@ export const create = ({ user_id, content }) =>
       }
     );
   });
+
+//왜 인지는 모르겠지만 코드가 자동으로 떠오른다
 
 export const findById = (id) =>
   new Promise((res, rej) => {
@@ -31,7 +32,7 @@ export const listByUser = (user_id) =>
     db.all(
       `
     SELECT s.*,
-           (SELECT COUNT(*) FROM reactions WHERE story_id = s.id) AS likes
+          (SELECT COUNT(*) FROM reactions WHERE story_id = s.id) AS likes
     FROM stories s
     WHERE user_id = ?
     ORDER BY created_at DESC`,

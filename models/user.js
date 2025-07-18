@@ -1,4 +1,3 @@
-// models/user.js
 import db from "../db/sqlite.js";
 import bcrypt from "bcrypt";
 
@@ -33,3 +32,4 @@ export const findById = (id) =>
       (err, row) => (err ? rej(err) : res(row))
     );
   });
+// 뭐야 이거 왜 떠있노

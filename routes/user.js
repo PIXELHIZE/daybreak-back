@@ -7,6 +7,6 @@ const r = Router();
 
 r.get("/me", authenticate, c.getMe);
 
-r.get("/:id", c.getUserPublic); // 공개 프로필
+r.get("/:id", c.getUserPublic);
 
 export default r;

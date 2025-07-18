@@ -1,6 +1,7 @@
 import * as Story from "../models/story.js";
 import * as Reads from "../models/readHistory.js";
 import { getRandomInt } from "../utils/random.js";
+import db from "../db/sqlite.js";
 
 export const createStory = async (req, res, next) => {
   try {
@@ -53,11 +54,20 @@ export const deleteStory = (req, res, next) => {
 
 export const randomStory = async (req, res, next) => {
   try {
-    const ident = req.user?.id ?? req.headers["x-guest-id"];
-    const rows = await Reads.unreadStoriesFor(ident);
-    if (!rows.length)
-      return res.status(404).json({ message: "No stories left" });
-    res.json(rows[getRandomInt(rows.length)]);
+    const user_id = req.user?.id || null;
+    const guest_id = req.headers["x-guest-id"] || null;
+
+    // 1) 안 읽은 사연부터 시도
+    let stories = await Reads.unreadStoriesFor({ user_id, guest_id });
+
+    // 2) 다 읽었으면 전체 풀에서 랜덤
+    if (!stories.length) stories = await Story.list();
+
+    // 3) 그래도 없으면 (DB 비어 있음)
+    if (!stories.length)
+      return res.status(404).json({ message: "No stories available" });
+
+    res.json(stories[getRandomInt(stories.length)]);
   } catch (err) {
     next(err);
   }

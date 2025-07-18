@@ -1,7 +1,5 @@
-// controllers/userController.js
 import * as User from "../models/user.js";
 
-/** GET /users/me  – 내 프로필 */
 export const getMe = async (req, res, next) => {
   try {
     const me = await User.findById(req.user.id);
@@ -12,7 +10,6 @@ export const getMe = async (req, res, next) => {
   }
 };
 
-/** GET /users/:id – 공개 프로필 */
 export const getUserPublic = async (req, res, next) => {
   try {
     const u = await User.findById(req.params.id);
