@@ -22,3 +22,5 @@
 2025-07-18T20:27:12.345Z | GET | /users/me | guest:3148ff0a-039b-4011-b001-a626b0216480
 2025-07-18T20:27:14.085Z | GET | /users/me | guest:cfd59282-2da9-4645-8ebd-04c6bcdbc1a5
 2025-07-18T20:27:14.387Z | GET | /users/me | guest:cfd59282-2da9-4645-8ebd-04c6bcdbc1a5
+2025-07-18T20:27:21.904Z | POST | /auth/login | guest:cfd59282-2da9-4645-8ebd-04c6bcdbc1a5
+2025-07-18T20:27:29.351Z | GET | /users/me | guest:3148ff0a-039b-4011-b001-a626b0216480
