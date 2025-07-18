@@ -2,8 +2,9 @@ import { Router } from "express";
 import { authenticate } from "../middlewares/authMiddleware.js";
 import * as c from "../controllers/storyController.js";
 
+import { authOptional } from "../middlewares/authOptional.js";
 const r = Router();
-r.post("/", authenticate, c.createStory);
+r.post("/", authOptional, c.createStory);
 r.get("/", c.listStories);
 r.get("/random", c.randomStory);
 r.get("/my-stories", authenticate, c.myStories);

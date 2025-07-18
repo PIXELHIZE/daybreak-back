@@ -1,4 +1,3 @@
-// routes/read.js
 import { Router } from "express";
 import { markRead } from "../controllers/readController.js";
 import { authenticate } from "../middlewares/authMiddleware.js";

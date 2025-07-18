@@ -11,8 +11,6 @@ export const create = ({ user_id, content }) =>
     );
   });
 
-//왜 인지는 모르겠지만 코드가 자동으로 떠오른다
-
 export const findById = (id) =>
   new Promise((res, rej) => {
     db.get("SELECT * FROM stories WHERE id = ?", [id], (err, row) =>

@@ -57,13 +57,10 @@ export const randomStory = async (req, res, next) => {
     const user_id = req.user?.id || null;
     const guest_id = req.headers["x-guest-id"] || null;
 
-    // 1) 안 읽은 사연부터 시도
     let stories = await Reads.unreadStoriesFor({ user_id, guest_id });
 
-    // 2) 다 읽었으면 전체 풀에서 랜덤
     if (!stories.length) stories = await Story.list();
 
-    // 3) 그래도 없으면 (DB 비어 있음)
     if (!stories.length)
       return res.status(404).json({ message: "No stories available" });
 

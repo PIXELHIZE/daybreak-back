@@ -18,12 +18,12 @@ export const unreadStoriesFor = (identifier) =>
       WHERE s.id NOT IN (
         SELECT story_id
         FROM read_history
-        WHERE user_id  = ?        -- 회원
-           OR guest_id = ?        -- 비회원
+        WHERE user_id  = ?     
+           OR guest_id = ?        
       )
       ORDER BY s.created_at DESC
       `,
-      [identifier, identifier], // 파라미터를 두 번!
+      [identifier, identifier],
       (err, rows) => (err ? rej(err) : res(rows))
     );
   });
